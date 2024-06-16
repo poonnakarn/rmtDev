@@ -20,7 +20,7 @@ export function useJobItem(id: number | null) {
     fetchData();
   }, [id]);
 
-  return [jobItem, isLoading] as const;
+  return { jobItem, isLoading } as const;
 }
 
 export function useActiveId() {
@@ -68,5 +68,5 @@ export function useJobItems(searchText: string) {
     fetchData();
   }, [searchText]);
 
-  return [jobItemsSliced, isLoading, totalNumberOfResults] as const;
+  return { jobItemsSliced, isLoading, totalNumberOfResults };
 }
