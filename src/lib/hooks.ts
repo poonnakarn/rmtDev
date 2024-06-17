@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import { JobItem, JobItemExpanded } from './types';
 import { BASE_API_URL } from './constant';
 import { useQuery } from '@tanstack/react-query';
-import toast from 'react-hot-toast';
+import { handleError } from './utils';
 
 type JobItemApiResponse = {
   public: boolean;
@@ -31,9 +31,7 @@ export function useJobItem(id: number | null) {
       refetchOnWindowFocus: false,
       retry: false,
       enabled: Boolean(id),
-      onError: (error) => {
-        console.log(error);
-      },
+      onError: handleError,
     }
   );
 
@@ -101,9 +99,7 @@ export function useJobItems(searchText: string) {
       refetchOnWindowFocus: false,
       retry: false,
       enabled: Boolean(searchText),
-      onError: (error) => {
-        toast.error(error.message);
-      },
+      onError: handleError,
     }
   );
 
